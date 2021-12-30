@@ -9,12 +9,8 @@ import {
   getDoc,
   setDoc,
 } from 'firebase/firestore'
-//import { getAnalytics } from 'firebase/analytics'
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyAugAg3N5rgFtJhIObd4TRijMkOqgGwy5A',
   authDomain: 'crwn-db-hdev.firebaseapp.com',
@@ -29,6 +25,7 @@ export const app = initializeApp(firebaseConfig)
 
 const db = getFirestore()
 
+// Checks Google user and persists in firesbase
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return
 
@@ -44,13 +41,12 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     } catch (error) {
       console.log('error creating user', error.message)
     }
-  } else {
-    console.log(userAuth.uid)
   }
+
   return docRef
 }
-// Initialize Firebase
 
+// Popup GoogleOauth Signin
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: 'select_account' })
 const auth = getAuth()
