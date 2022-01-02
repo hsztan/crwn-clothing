@@ -42,7 +42,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 // Popup GoogleOauth Signin
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({ prompt: 'select_account' })
-const auth = getAuth()
+export const auth = getAuth()
 
 export const signInWithGoogle = () =>
   signInWithPopup(auth, provider)
